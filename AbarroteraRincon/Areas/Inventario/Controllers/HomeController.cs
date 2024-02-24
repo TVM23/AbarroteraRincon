@@ -1,9 +1,10 @@
-﻿using AbarroteraRincon.Models;
+﻿using AbarroteraRincon.Modelos.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace AbarroteraRincon.Controllers
+namespace AbarroteraRincon.Areas.Inventario.Controllers
 {
+    [Area("Inventario")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

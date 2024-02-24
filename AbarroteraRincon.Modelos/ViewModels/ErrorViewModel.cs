@@ -1,4 +1,4 @@
-namespace AbarroteraRincon.Models
+namespace AbarroteraRincon.Modelos.ViewModels
 {
     public class ErrorViewModel
     {
