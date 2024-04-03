@@ -12,7 +12,7 @@ namespace AbarroteraRincon.AccesoDatos.Repositorio
     {
         private readonly ApplicationDbContext _db;
 
-        public IBodegaRepositorio Bodega { get; set; }
+        public IBodegaRepositorio Bodega { get; set; }  //aHORA SI SE REQUIERE DE GETTER Y SETTER
 
         public UnidadTrabajo(ApplicationDbContext db)
         {

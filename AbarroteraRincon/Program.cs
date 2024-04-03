@@ -16,7 +16,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-builder.Services.AddScoped<IUnidadTrabajo,UnidadTrabajo>();
+builder.Services.AddScoped<IUnidadTrabajo, UnidadTrabajo>();   //Esto es para hacer que gurade la informacion y se pueda usar en varias partes
 
 var app = builder.Build();
 

@@ -8,7 +8,8 @@ namespace AbarroteraRincon.AccesoDatos.Repositorio.IRepositorio
 {
     public interface IUnidadTrabajo : IDisposable
     {
-        IBodegaRepositorio Bodega {  get; }
+        IBodegaRepositorio Bodega { get; }
+
         Task Guardar();
     }
 }

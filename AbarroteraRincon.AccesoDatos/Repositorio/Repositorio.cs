@@ -12,14 +12,19 @@ namespace AbarroteraRincon.AccesoDatos.Repositorio
 {
     public class Repositorio<T> : IRepositorio<T> where T : class
     {
+        //acceso a la base de datos
         private readonly ApplicationDbContext _db;
 
+        //necesitamos mandar el conjunto de datos a traves de una variable
         internal DbSet<T> dbSet;
+
+        //Constructor para inicializar variable dbSet
         public Repositorio(ApplicationDbContext db)
         {
             _db = db;
             this.dbSet = _db.Set<T>();
         }
+
         public async Task Agregar(T entidad)
         {
             await dbSet.AddAsync(entidad); //insert into table
