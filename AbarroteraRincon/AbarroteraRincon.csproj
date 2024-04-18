@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-AbarroteraRincon-1f61a710-907d-4e94-87bf-d04a69a52d8a</UserSecretsId>
   </PropertyGroup>
