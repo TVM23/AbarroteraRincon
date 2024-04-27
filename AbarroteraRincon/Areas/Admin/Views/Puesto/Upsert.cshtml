@@ -1,0 +1,98 @@
+﻿@model AbarroteraRincon.Modelos.Puesto
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var titulo = "Crear Puesto";
+}
+
+<!-- Creamos el formulario de envio de informacion -->
+<form method="post">
+    <div style="padding-left:15%; padding-right:15%; padding-bottom:inherit.4rem;">
+        <div class="row border-0">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+            </div>
+        </div>
+        <!-- Cambio de titulo de la pagina -->
+        @if(Model.Id != 0)
+        {
+            //Actualizar
+            titulo = "Actualizar Puesto";
+            <input type="hidden" asp-for="Id"/>
+        }
+        <!-- Mostrar titulo de la pagina -->
+        <div class="col-12 border-botton p-0">
+            <h2 class="text-primary">@titulo</h2>
+        </div>
+        <!-- Campo nombre -->
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Nombre</label>
+                <input type="text" asp-for="Nombre" class="form-control" placeholder="Nombre del puesto" id="nombre" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Tipo</label>
+                <select asp-for="Tipo" class="form-select">
+                    <option value="Administrativo">Administrativo</option>
+                    <option value="Operativo">Operativo</option>
+                    <option value="Directivo">Directivo</option>
+                </select>
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Salario</label>
+                <input type="text" asp-for="Salario" class="form-control" placeholder="Salario del puesto " />
+                <span asp-validation-for="Salario" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Horario</label>
+                <input type="text" asp-for="Horario" class="form-control" placeholder="Horario del puesto" />
+                <span asp-validation-for="Horario" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Presentamos vistas parciales -->
+        <div>
+            @if(Model.Id != 0)
+            {
+                <partial name="_BotonesActualizarYRegresar" model="Model.Id" />
+            }
+            else
+            {
+                <partial name="_BotonesCrearYRegresar" />
+            }
+        </div>
+    </div>
+</form>
+
+<!-- Configuramos por medio de un script al dom para que use los helper tags -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.getElementById("nombre").addEventListener('change', function () {
+            ValidarNombre();
+        });
+
+        function ValidarNombre() {
+            var url = '@Url.Content("~/")' + "Admin/Puesto/ValidarNombre";
+            var id = '#id';
+            var nombre = '#nombre';
+
+            $.getJSON(url, { id: $(id).val(), nombre: $(nombre).val() }, function (data) {
+                $.each(data, function (key, value) {
+                    if (value) {
+                        var nombre = document.getElementById("nombre");
+                        swal("ERROR", "Este Nombre ya Existe", "error");
+                        nombre.value = "";
+                    }
+                });
+            })
+        }
+    </script>
+}
+

@@ -12,6 +12,9 @@ namespace AbarroteraRincon.AccesoDatos.Repositorio.IRepositorio
         ICategoriaRepositorio Categoria { get; }
         IMarcaRepositorio Marca { get; }
         IProductoRepositorio Producto { get; }
+        IPuestoRepositorio Puesto { get; }
+        IAreaPRepositorio AreaP { get; }
+        IEmpleadoRepositorio Empleado { get; }
 
         Task Guardar();
     }

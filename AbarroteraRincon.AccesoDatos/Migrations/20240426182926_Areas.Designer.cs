@@ -4,6 +4,7 @@ using AbarroteraRincon.AccesoDatos.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AbarroteraRincon.AccesoDatos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240426182926_Areas")]
+    partial class Areas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace AbarroteraRincon.AccesoDatos.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AbarroteraRincon.Modelos.AreaP", b =>
+            modelBuilder.Entity("AbarroteraRincon.Modelos.AreaT", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +44,7 @@ namespace AbarroteraRincon.AccesoDatos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AreasP");
+                    b.ToTable("AreaTs");
                 });
 
             modelBuilder.Entity("AbarroteraRincon.Modelos.Bodega", b =>
@@ -94,54 +97,6 @@ namespace AbarroteraRincon.AccesoDatos.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categorias");
-                });
-
-            modelBuilder.Entity("AbarroteraRincon.Modelos.Empleado", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Amaterno")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Apaterno")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<int>("AreaPId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Direccion")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<int>("PuestoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Telefono")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AreaPId");
-
-                    b.HasIndex("PuestoId");
-
-                    b.ToTable("Empleados");
                 });
 
             modelBuilder.Entity("AbarroteraRincon.Modelos.Marca", b =>
@@ -454,25 +409,6 @@ namespace AbarroteraRincon.AccesoDatos.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("AbarroteraRincon.Modelos.Empleado", b =>
-                {
-                    b.HasOne("AbarroteraRincon.Modelos.AreaP", "AreaP")
-                        .WithMany()
-                        .HasForeignKey("AreaPId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("AbarroteraRincon.Modelos.Puesto", "Puesto")
-                        .WithMany()
-                        .HasForeignKey("PuestoId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("AreaP");
-
-                    b.Navigation("Puesto");
                 });
 
             modelBuilder.Entity("AbarroteraRincon.Modelos.Producto", b =>

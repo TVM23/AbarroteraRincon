@@ -16,7 +16,9 @@ namespace AbarroteraRincon.AccesoDatos.Repositorio
         public ICategoriaRepositorio Categoria { get; set; }
         public IMarcaRepositorio Marca { get; set; }
         public IProductoRepositorio Producto { get; set; }
-
+        public IPuestoRepositorio Puesto { get; set; }
+        public IAreaPRepositorio AreaP { get; set; }
+        public IEmpleadoRepositorio Empleado { get; set; }
 
         public UnidadTrabajo(ApplicationDbContext db)
         {
@@ -25,6 +27,9 @@ namespace AbarroteraRincon.AccesoDatos.Repositorio
             Categoria = new CategoriaRepositorio(_db);
             Marca = new MarcaRepositorio(_db);
             Producto = new ProductoRepositorio(_db);
+            Puesto = new PuestoRepositorio(_db);
+            AreaP = new AreaPRepositorio(_db);
+            Empleado = new EmpleadoRepositorio(_db);
         }
 
         public void Dispose()
